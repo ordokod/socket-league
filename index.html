@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Socket Leauge</title>
+  </head>
+  <body>
+    <div id="output"></div>
+    hepp
+
+    <script src="http://192.168.50.75:3000/socket.io/socket.io.js"></script>
+    <script>
+      var socket = io();
+    </script>
+
+    <div id="output"></div>
+    <script type="text/javascript">
+      function requestOrientationPermission() {
+        DeviceOrientationEvent.requestPermission()
+          .then((response) => {
+            if (response == "granted") {
+              window.addEventListener("deviceorientation", (e) => {
+                output.innerHTML = `
+                    <p>Alpha: ${e.alpha}</p>
+                    <p>Beta: ${e.beta}</p>
+                    <p>Gamma: ${e.gamma}</p>
+                `;
+                if (e.beta > 45) {
+                  console.log("tilted to the right");
+                  output.innerHTML = `tilted to the right`;
+
+                  socket.emit("move", "right");
+                }
+
+                // if device is in landscape mode an tilted to the left
+                if (e.beta < -45) {
+                  console.log("tilted to the left");
+                  output.innerHTML = `tilted to the left`;
+
+                  socket.emit("move", "left");
+                }
+              });
+            }
+          })
+          .catch(console.error);
+      }
+    </script>
+
+    <button onclick="requestOrientationPermission();">
+      Request orientation permission
+    </button>
+  </body>
+</html>
