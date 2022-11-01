@@ -27,19 +27,19 @@
                     <p>Beta: ${e.beta}</p>
                     <p>Gamma: ${e.gamma}</p>
                 `;
-                if (e.beta > 45) {
+                if (e.beta > 10) {
                   console.log("tilted to the right");
                   output.innerHTML = `tilted to the right`;
 
-                  //  socket.emit("move", "right");
+                  socket.emit("move", "right");
                 }
 
                 // if device is in landscape mode an tilted to the left
-                if (e.beta < -45) {
+                if (e.beta < -10) {
                   console.log("tilted to the left");
                   output.innerHTML = `tilted to the left`;
 
-                  //   socket.emit("move", "left");
+                  socket.emit("move", "left");
                 }
               });
             }
