@@ -10,6 +10,10 @@ app.get("/", (req, res) => {
   res.sendFile(__dirname + "/index.html");
 });
 
+app.get("/game", (req, res) => {
+  res.sendFile(__dirname + "/game.html");
+});
+
 io.on("connection", (socket) => {
   console.log("a user connected");
 });
