@@ -16,8 +16,11 @@ app.get("/game", (req, res) => {
 
 io.on("connection", (socket) => {
   console.log("a user connected");
+  socket.on("move", (msg) => {
+    io.emit("move", msg);
+  });
 });
 
 server.listen(PORT, () => {
-  console.log("listening on *:3000");
+  console.log("server started on port " + PORT);
 });
