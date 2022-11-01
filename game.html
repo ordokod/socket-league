@@ -15,10 +15,8 @@
     <script>
       var socket = io();
 
-      io.on("connection", (socket) => {
-        socket.on("move", (msg) => {
-          console.log("message: " + msg);
-        });
+      socket.on("move", (msg) => {
+        console.log("message: " + msg);
       });
     </script>
   </body>
