@@ -14,10 +14,27 @@
         padding: 0;
         overflow: hidden;
       }
+      .qr {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        display: none;
+      }
     </style>
     <script src="/socket.io/socket.io.js"></script>
   </head>
   <body>
+    <div class="qr">
+      <img
+        src="https://chart.googleapis.com/chart?cht=qr&chl=https%3A%2F%2Fsocket-leauge.herokuapp.com%2F&chs=180x180&choe=UTF-8&chld=L|2"
+        alt="qr code"
+      /><a
+        href="https://sv.qr-code-generator.com/
+            "
+        style="cursor: default"
+        rel="nofollow"
+      ></a>
+    </div>
     <canvas id="canvas" width="500" height="500"></canvas>
     <script src="js/game.js" lang="javascript" type="module"></script>
   </body>

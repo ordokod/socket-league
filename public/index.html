@@ -148,12 +148,12 @@
                   return;
                 }
 
-                if (e.beta < -10 && player.dir.x !== -1) {
+                if (e.beta < -5 && player.dir.x !== -1) {
                   onTurn(1);
                   return;
                 }
 
-                if (e.beta > -10 && e.beta < 10 && player.dir.x !== 0) {
+                if (e.beta > -5 && e.beta < 10 && player.dir.x !== 0) {
                   onTurn(0);
                   return;
                 }
