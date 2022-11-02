@@ -108,6 +108,11 @@
         socket.emit("player-move", player);
       };
 
+      const onTurn = (value) => {
+        player.dir.x = value;
+        socket.emit("player-move", player);
+      };
+
       const start = () => {
         socket.emit("new-player", player);
 
@@ -115,12 +120,19 @@
           .then((response) => {
             if (response == "granted") {
               window.addEventListener("deviceorientation", (e) => {
-                if (e.beta > 10) {
-                  socket.emit("move", "right");
+                if (e.beta > 10 && player.dir.x !== 1) {
+                  onTurn(1);
+                  return;
                 }
 
-                if (e.beta < -10) {
-                  socket.emit("move", "left");
+                if (e.beta < -10 && player.dir.x !== -1) {
+                  onTurn(-1);
+                  return;
+                }
+
+                if (e.beta > -10 && e.beta < 10 && player.dir.x !== 0) {
+                  onTurn(0);
+                  return;
                 }
               });
             }
