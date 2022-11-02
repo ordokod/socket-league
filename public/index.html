@@ -144,12 +144,12 @@
             if (response == "granted") {
               window.addEventListener("deviceorientation", (e) => {
                 if (e.beta > 10 && player.dir.x !== 1) {
-                  onTurn(1);
+                  onTurn(-1);
                   return;
                 }
 
                 if (e.beta < -10 && player.dir.x !== -1) {
-                  onTurn(-1);
+                  onTurn(1);
                   return;
                 }
 
