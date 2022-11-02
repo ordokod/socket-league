@@ -6,7 +6,7 @@ class Car {
   height = 20;
   dir = { x: 0, y: 0 };
   speed = 0;
-  maxSpeed = 10;
+  maxSpeed = 5;
   angle = 0;
   turnSpeed = 0.1;
   baseColor = "#ff0000";
