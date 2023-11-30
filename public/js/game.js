@@ -109,12 +109,22 @@ class Game {
 const game = new Game("canvas");
 game.start();
 
-const output = document.getElementById("turnspeed-output");
-output.innerHTML = "TURN SPEED: 0.1";
+const turnspeedElement = document.getElementById("turnspeed-output");
+turnspeedElement.innerHTML = "TURN SPEED: 0.1";
 
 document.getElementById("turnspeed").addEventListener("change", (e) => {
   game.players.forEach((player) => {
     player.car.turnSpeed = parseFloat(e.target.value);
   });
-  output.innerHTML = "TURN SPEED: " + e.target.value;
+  turnspeedElement.innerHTML = "TURN SPEED: " + e.target.value;
+});
+
+const speedElement = document.getElementById("speed-output");
+speedElement.innerHTML = "SPEED: -";
+
+document.getElementById("speed").addEventListener("change", (e) => {
+  game.players.forEach((player) => {
+    player.car.maxSpeed = parseFloat(e.target.value);
+  });
+  speedElement.innerHTML = "SPEED: " + e.target.value;
 });
