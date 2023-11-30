@@ -108,3 +108,13 @@ class Game {
 
 const game = new Game("canvas");
 game.start();
+
+const output = document.getElementById("turnspeed-output");
+output.innerHTML = "TURN SPEED: 0.1";
+
+document.getElementById("turnspeed").addEventListener("change", (e) => {
+  game.players.forEach((player) => {
+    player.car.turnSpeed = e.target.value;
+  });
+  output.innerHTML = "TURN SPEED: " + e.target.value;
+});
