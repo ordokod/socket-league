@@ -114,7 +114,7 @@ output.innerHTML = "TURN SPEED: 0.1";
 
 document.getElementById("turnspeed").addEventListener("change", (e) => {
   game.players.forEach((player) => {
-    player.car.turnSpeed = parseInt(e.target.value);
+    player.car.turnSpeed = parseFloat(e.target.value);
   });
   output.innerHTML = "TURN SPEED: " + e.target.value;
 });
