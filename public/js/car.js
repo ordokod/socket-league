@@ -18,6 +18,17 @@ class Car {
 
     this.x = Math.random() * canvas.width;
     this.y = Math.random() * canvas.height;
+
+    // update max speed with arrow keys
+    document.addEventListener("keydown", (e) => {
+      if (e.keyCode === 37) {
+        this.maxSpeed -= 0.1;
+      }
+
+      if (e.keyCode === 39) {
+        this.maxSpeed += 0.1;
+      }
+    });
   }
 
   update = () => {
