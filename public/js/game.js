@@ -25,8 +25,8 @@ class Game {
   };
 
   loop = () => {
-    this.ctx.fillStyle = "#7ec850";
-    this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+    // this.ctx.fillStyle = "#7ec850";
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
     if (!this.ball) return;
     if (!this.players) return;
@@ -72,7 +72,7 @@ class Game {
   };
 
   drawBall = (ball) => {
-    this.ctx.fillStyle = "#555";
+    this.ctx.fillStyle = "#333";
     this.ctx.beginPath();
     this.ctx.arc(ball.x, ball.y, ball.radius, 0, 2 * Math.PI);
     this.ctx.fill();
@@ -110,7 +110,7 @@ const game = new Game("canvas");
 game.start();
 
 const turnspeedElement = document.getElementById("turnspeed-output");
-turnspeedElement.innerHTML = "TURN SPEED: 0.1";
+turnspeedElement.innerHTML = "TURN SPEED: 0.05";
 
 document.getElementById("turnspeed").addEventListener("change", (e) => {
   game.players.forEach((player) => {
@@ -120,7 +120,7 @@ document.getElementById("turnspeed").addEventListener("change", (e) => {
 });
 
 const speedElement = document.getElementById("speed-output");
-speedElement.innerHTML = "SPEED: -";
+speedElement.innerHTML = "SPEED: 3";
 
 document.getElementById("speed").addEventListener("change", (e) => {
   game.players.forEach((player) => {

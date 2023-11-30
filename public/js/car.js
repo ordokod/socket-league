@@ -6,9 +6,9 @@ class Car {
   height = 20;
   dir = { x: 0, y: 0 };
   speed = 0;
-  maxSpeed = 5;
+  maxSpeed = 3;
   angle = 0;
-  turnSpeed = 0.09;
+  turnSpeed = 0.05;
   baseColor = "#ff0000";
   shadeColor = "#ff0000";
 
@@ -32,7 +32,6 @@ class Car {
   }
 
   update = () => {
-    console.log("turnSpeed", this.turnSpeed);
     if (Math.abs(this.speed) > 0.2) {
       if (this.dir.x === -1) {
         this.angle += this.turnSpeed;
