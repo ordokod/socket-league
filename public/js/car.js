@@ -8,7 +8,7 @@ class Car {
   speed = 0;
   maxSpeed = 5;
   angle = 0;
-  turnSpeed = 0.01;
+  turnSpeed = 0.05;
   baseColor = "#ff0000";
   shadeColor = "#ff0000";
 
