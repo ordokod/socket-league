@@ -32,6 +32,7 @@ class Car {
   }
 
   update = () => {
+    console.log("turnSpeed", this.turnSpeed);
     if (Math.abs(this.speed) > 0.2) {
       if (this.dir.x === -1) {
         this.angle += this.turnSpeed;
