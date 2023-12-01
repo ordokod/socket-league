@@ -18,9 +18,13 @@
       }
       .qr {
         position: absolute;
-        bottom: 0;
-        left: 0;
-        display: none;
+        bottom: 10px;
+        right: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-size: 12px;
+        gap: 5px;
       }
 
       .title {
@@ -60,15 +64,8 @@
   <body>
     <div class="title">SOCKET LEAUGE</div>
     <div class="qr">
-      <img
-        src="https://chart.googleapis.com/chart?cht=qr&chl=https%3A%2F%2Fsocket-leauge.herokuapp.com%2F&chs=180x180&choe=UTF-8&chld=L|2"
-        alt="qr code"
-      /><a
-        href="https://sv.qr-code-generator.com/
-            "
-        style="cursor: default"
-        rel="nofollow"
-      ></a>
+      JOIN
+      <img src="qr-code.png" alt="qr code" width="200" height="200" />
     </div>
 
     <div class="settings">
