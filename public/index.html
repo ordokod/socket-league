@@ -31,58 +31,86 @@
         touch-action: none;
       }
 
-      #button-wrapper {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+      .wrapper {
+        background-color: #000;
       }
 
-      .button {
-        width: 50%;
-        height: 100%;
-        text-align: center;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        user-select: none;
-      }
-
-      #break {
-        background-color: #ff0000;
-      }
-
-      #gas {
-        background-color: #00ff00;
-      }
-
-      #start {
-        position: absolute;
+      .turn {
+        position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
+        z-index: 99;
+        display: none;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .turn img {
+        width: auto;
+        height: 150px;
+      }
+
+      @media screen and (orientation: portrait) {
+        .turn {
+          display: flex;
+        }
+        .wrapper {
+          display: none;
+        }
+      }
+
+      .button {
+        user-select: none;
+      }
+
+      #break {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 50%;
+        height: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
-        background-color: #000;
-        color: #fff;
-        font-size: 2rem;
-        user-select: none;
-        z-index: 100;
+        border-right: 1px dashed #fff;
+      }
+
+      .button {
+        font-size: 80px;
+        position: fixed;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      #gas {
+        top: 0;
+        right: 0;
+        width: 50%;
+        height: 100%;
+      }
+
+      #start {
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
       }
     </style>
   </head>
 
   <body>
-    <div id="start">START</div>
-    <div id="button-wrapper">
-      <div class="button" id="break">BREAK</div>
-      <div class="button" id="gas">GAS</div>
+    <div class="turn">
+      <img src="turn.png" alt="" />
+    </div>
+    <div class="wrapper">
+      <div class="button" id="start">START</div>
+      <div id="button-wrapper">
+        <div class="button" id="break">BREAK</div>
+        <div class="button" id="gas">GAS</div>
+      </div>
     </div>
     <script>
       const socket = io();
@@ -100,11 +128,15 @@
       document.body.style.backgroundColor = color;
 
       const startButton = document.getElementById("start");
+      const buttonWrapper = document.getElementById("button-wrapper");
       const gasButton = document.getElementById("gas");
       const breakButton = document.getElementById("break");
 
+      buttonWrapper.style.display = "none";
+
       startButton.addEventListener("click", () => {
         startButton.style.display = "none";
+        buttonWrapper.style.display = "block";
         start();
       });
 
@@ -145,13 +177,13 @@
           .then((response) => {
             if (response == "granted") {
               window.addEventListener("deviceorientation", (e) => {
-                if (e.beta > 10 && player.dir.x !== 1) {
-                  onTurn(-1);
+                if (e.beta > 10) {
+                  onTurn(e.beta);
                   return;
                 }
 
-                if (e.beta < -5 && player.dir.x !== -1) {
-                  onTurn(1);
+                if (e.beta < -10) {
+                  onTurn(e.beta);
                   return;
                 }
 
