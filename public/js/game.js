@@ -110,7 +110,7 @@ const game = new Game("canvas");
 game.start();
 
 const turnspeedElement = document.getElementById("turnspeed-output");
-turnspeedElement.innerHTML = "TURN SPEED: 0.05";
+turnspeedElement.innerHTML = "TURN SPEED: 800";
 
 document.getElementById("turnspeed").addEventListener("change", (e) => {
   game.players.forEach((player) => {
