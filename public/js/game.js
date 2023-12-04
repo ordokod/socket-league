@@ -69,6 +69,14 @@ class Game {
     );
 
     this.ctx.restore();
+
+    car.trail.forEach((pos) => {
+      this.ctx.save();
+      this.ctx.translate(pos.x, pos.y);
+      this.ctx.fillStyle = "#ccc";
+      this.ctx.fillRect(0, 0, 5, 5);
+      this.ctx.restore();
+    });
   };
 
   drawBall = (ball) => {

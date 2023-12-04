@@ -11,6 +11,7 @@ class Car {
   turnSpeed = 800;
   baseColor = "#ff0000";
   shadeColor = "#ff0000";
+  trail = [];
 
   constructor(canvas, color) {
     this.canvas = canvas;
@@ -22,13 +23,7 @@ class Car {
 
   update = () => {
     if (Math.abs(this.speed) > 0.2) {
-      //if (this.dir.x === -1) {
       this.angle -= this.dir.x / this.turnSpeed;
-      //}
-
-      /* if (this.dir.x === 1) {
-        this.angle -= this.turnSpeed;
-      } */
     }
 
     if (this.dir.y === -1) {
@@ -49,6 +44,15 @@ class Car {
 
     this.x += Math.cos(this.angle) * this.speed;
     this.y += Math.sin(this.angle) * this.speed;
+
+    this.trail.push({
+      x: this.x,
+      y: this.y,
+    });
+
+    if (this.trail.length > 50) {
+      this.trail.shift();
+    }
 
     if (this.x > canvas.width) {
       this.x = 0;
