@@ -23,7 +23,7 @@ class Car {
   update = () => {
     if (Math.abs(this.speed) > 0.2) {
       //if (this.dir.x === -1) {
-      this.angle += this.dir.x / 1000;
+      this.angle += this.dir.x / this.turnSpeed;
       //}
 
       /* if (this.dir.x === 1) {
