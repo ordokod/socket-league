@@ -33,6 +33,7 @@ class Game {
 
     this.players.forEach((player) => {
       player.car.update();
+      this.drawTrail(player.car);
       this.drawCar(player.car);
     });
 
@@ -69,12 +70,18 @@ class Game {
     );
 
     this.ctx.restore();
+  };
 
+  drawTrail = (car) => {
+    let opacity = 0;
     car.trail.forEach((pos) => {
       this.ctx.save();
       this.ctx.translate(pos.x, pos.y);
-      this.ctx.fillStyle = "#ccc";
-      this.ctx.fillRect(0, 0, 5, 5);
+      this.ctx.fillStyle = "#000";
+      this.ctx.globalAlpha = opacity;
+      opacity += 1 / car.trail.length;
+      this.ctx.fillRect(0, -10, 3, 3);
+      this.ctx.fillRect(0, 7, 3, 3);
       this.ctx.restore();
     });
   };

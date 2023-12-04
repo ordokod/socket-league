@@ -50,7 +50,7 @@ class Car {
       y: this.y,
     });
 
-    if (this.trail.length > 50) {
+    if (this.trail.length > 200) {
       this.trail.shift();
     }
 
