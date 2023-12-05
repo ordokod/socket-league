@@ -170,31 +170,43 @@
         socket.emit("player-move", player);
       };
 
+      const addDeviceorientationListener = () => {
+        window.addEventListener("deviceorientation", (e) => {
+          if (e.beta > 10) {
+            onTurn(e.beta);
+            return;
+          }
+
+          if (e.beta < -10) {
+            onTurn(e.beta);
+            return;
+          }
+
+          if (e.beta > -5 && e.beta < 10 && player.dir.x !== 0) {
+            onTurn(0);
+            return;
+          }
+        });
+      };
+
       const start = () => {
         socket.emit("new-player", player);
 
-        DeviceOrientationEvent.requestPermission()
-          .then((response) => {
-            if (response == "granted") {
-              window.addEventListener("deviceorientation", (e) => {
-                if (e.beta > 10) {
-                  onTurn(e.beta);
-                  return;
-                }
+        if (!window.DeviceOrientationEvent) {
+          return;
+        }
 
-                if (e.beta < -10) {
-                  onTurn(e.beta);
-                  return;
-                }
-
-                if (e.beta > -5 && e.beta < 10 && player.dir.x !== 0) {
-                  onTurn(0);
-                  return;
-                }
-              });
-            }
-          })
-          .catch(console.error);
+        if (typeof DeviceOrientationEvent.requestPermission === "function") {
+          DeviceOrientationEvent.requestPermission()
+            .then((response) => {
+              if (response == "granted") {
+                addDeviceorientationListener();
+              }
+            })
+            .catch(console.error);
+        } else {
+          addDeviceorientationListener();
+        }
       };
     </script>
   </body>
