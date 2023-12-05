@@ -77,11 +77,12 @@ class Game {
     car.trail.forEach((pos) => {
       this.ctx.save();
       this.ctx.translate(pos.x, pos.y);
-      this.ctx.fillStyle = "#000";
+      this.ctx.rotate(pos.angle);
+      this.ctx.fillStyle = "rgba(29, 71, 3, 0.14)";
       this.ctx.globalAlpha = opacity;
       opacity += 1 / car.trail.length;
-      this.ctx.fillRect(0, -10, 3, 3);
-      this.ctx.fillRect(0, 7, 3, 3);
+      this.ctx.fillRect(0, -9, 6, 3);
+      this.ctx.fillRect(0, 6, 6, 3);
       this.ctx.restore();
     });
   };

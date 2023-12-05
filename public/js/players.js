@@ -1,6 +1,14 @@
 import Car from "./car.js";
 export default class Players {
   constructor(canvas) {
+    /* const player = {
+      id: Date.now(),
+      color: "#7ec850",
+      car: new Car(canvas, "#7ec850"),
+    };
+
+    player.car.dir = { x: 6, y: 1 }; */
+
     this.players = [];
 
     const socket = io();
