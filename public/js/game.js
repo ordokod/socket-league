@@ -78,7 +78,7 @@ class Game {
       this.ctx.save();
       this.ctx.translate(pos.x, pos.y);
       this.ctx.rotate(pos.angle);
-      this.ctx.fillStyle = "#fff";
+      this.ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
       this.ctx.globalAlpha = opacity;
       opacity += 1 / car.trail.length;
       this.ctx.fillRect(0, -9, 6, 3);

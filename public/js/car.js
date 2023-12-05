@@ -46,7 +46,7 @@ class Car {
     this.x += Math.cos(this.angle) * this.speed;
     this.y += Math.sin(this.angle) * this.speed;
 
-    if (this.addTrail && Math.abs(this.speed) > 0.6) {
+    if (this.addTrail) {
       this.trail.push({
         x: this.x,
         y: this.y,
